@@ -2,55 +2,67 @@
 # GritMobileSprintV2
 # Chat application
 
-Firebase konto med en öppen chatt. 
-Använd Firebase för att låta er app skapa ett konto.  
-Minst två olika personer kan logga och skriva meddelade i en chatt liknande funktion.  
-Måste inte kunna skapa nya konton, det går bra ett två statiska konton.  
-
+  
+  
 ## [Milestones](https://github.com/tallner/GritMobileSprintV2/milestones)
 - [ ] MS1. Planning
 - [ ] MS2. GUI Design
-- [ ] MS3. Implementation phase 1
-- [ ] MS4. Implementation phase 2
+- [ ] MS3. Implementation phase 1 - Activities: create account, login, navigation, store data
+- [ ] MS4. Implementation phase 2 - Fragments: chat, search, settings
 - [ ] MS5. Report and deployment
-
-
-## Godkänd Kriterier:
-- [ ] Planering på 200 ord
-- [ ] Rapport med bilder samt 300 ord
-- [ ] Minst 3 Activities/fragments
-- [ ] Ha fungerande backstack.
+  
+## Requirements
+### Godkänd
+- [ ] Planning document 200 words
+- [ ] Final report with pictures and 300 words
+- [ ] At least 3 Activities/fragments
+- [ ] Use backstack 
 - [ ] Custom app icon
-- [ ] Minst 2 Activities/Fragment/klasser (Interfaces räknas ej) ska vara skriven i Kotlin , som också fyller ett meningsfullt syfte.
-- [ ] Använder er av Activity Lifecycle metoderna och spara/stänger services och anrop de efter behov. Data sparas vid när den pausas t.ex: app to tray.
-- [ ] Minst 1 Google Service, tex Firebase och Translator i chatten
-
-## Väl Godkänt kriterier välj 2 av 3 punkter men Kotlin är ett måste:
-- [ ] Hela projektet måste vara helt skriven i Kotlin.
-- [ ] Minst 5 Activities/fragments
-- [ ] Ha flera API:er/Database services.
-- [ ] Er APKfil ska vara signerat med er keystore, (lämna in apk filen också)
-
-## Egna kriterier
-- [ ] Trådad chat, dvs man ska kunna följa i chatten vilket meddelande man svarade på
-- [ ] Instant translation
-
-## Redovisning
-- [ ] Redovisa projektet 10 min + 5 frågor (ingen opponering).
+- [ ] At least 2 Activities/Fragment/classes written in Kotlin
+- [ ] Use the Activity Lifecycle methods and store and close services and call them when needed 
+- [ ] Store data when pausing the app
+- [ ] At least one Google Service, eg Firebase or Translator 
+  
+### Väl Godkänt - 2 of 3 selectables
+Kotlin is required
+- [ ] At least 5 Activities/fragments
+- [ ] More than one API and database services
+- [ ] The APK file should be signed with the keystore
+  
+  
+## Presentation
+- [ ] In class 10 min + 5 min questions
 
 
 ## Functionalities
-skapa konto  
-logga in  
-chatta med en person minst  
-söka  
-göra inställningar  
-backstack  
-app icon  
-bottom nav  
-backtab uppe till vänster(definiera i manifest)  
+The user should be able to
+-  create and account
+-  log in
+-  chat with at least one person
+-  search for chat messages
+-  make personal settings
+-  press back button using the backstack
+-  user the back tab setup in the manifest
+
+Other requirements
+- Customized app icon
+
+Optional
+-  Immediate translation
+-  Answer specific message
+-  Group chat
+-  Message threads inside a chat thread
+
+## Design
+-  Bottom navigation
+-  Backtab defined in manifest
+-  3 activities, CreateAccount, LogIn, MainActivity
+-  4 fragments in MainActivity, ChatFragment, SearchFragment, SettingsFragment
+
+
+
+
   
-direkt översättning till valfritt språk  
-svara på specifikt meddelande  
-chatt med flera/grupp  
-kunna se en chattråd inuti i en chatt, tex när man skriver så svarar man ibland på flera meddelande, nåt smutt sätt att kunna se de olika trådarna
+
+  
+  
