@@ -21,7 +21,7 @@
 - [ ] At least 2 Activities/Fragment/classes written in Kotlin
 - [ ] Use the Activity Lifecycle methods and store and close services and call them when needed 
 - [ ] Store data when pausing the app
-- [ ] At least one Google Service, eg Firebase or Translator 
+- [ ] At least one Google Service, eg Firebase, Translator, SpeechToText etc
   
 ### Väl Godkänt - 2 of 3 selectables
 Kotlin is required
