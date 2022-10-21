@@ -6,7 +6,7 @@ Använd Firebase för att låta er app skapa ett konto.
 Minst två olika personer kan logga och skriva meddelade i en chatt liknande funktion.  
 Måste inte kunna skapa nya konton, det går bra ett två statiska konton.  
 
-## Milestones
+## [Milestones](https://github.com/tallner/GritMobileSprintV2/milestones)
 - [ ] MS1. Planning
 - [ ] MS2. GUI Design
 - [ ] MS3. Implementation phase 1
