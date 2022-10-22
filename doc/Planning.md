@@ -52,6 +52,7 @@ Optional
 - [ ] Answer specific message
 - [ ] Group chat
 - [ ] Message threads inside a chat thread
+- [ ] Tests
 
 ## Design
 - [ ] Bottom navigation
