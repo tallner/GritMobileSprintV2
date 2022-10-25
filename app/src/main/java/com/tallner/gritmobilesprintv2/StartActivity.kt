@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : AppCompatActivity() {
 
-    private lateinit var firebaseUser : FirebaseUser
+    var firebaseUser : FirebaseUser?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class StartActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        firebaseUser = FirebaseAuth.getInstance().currentUser!!
+        firebaseUser = FirebaseAuth.getInstance().currentUser
 
         //if there is a user logged in then go to mainactivity
         if (firebaseUser != null) {
