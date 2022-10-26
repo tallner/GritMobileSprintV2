@@ -1,0 +1,1 @@
+Hur kan man se status på users i Firebase?

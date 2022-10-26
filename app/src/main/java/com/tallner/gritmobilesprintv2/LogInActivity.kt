@@ -3,12 +3,12 @@ package com.tallner.gritmobilesprintv2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.activity_log_in.*
-import kotlinx.android.synthetic.main.activity_new_user.*
 
 class LogInActivity : AppCompatActivity() {
     private lateinit var mAuth : FirebaseAuth
@@ -33,9 +33,6 @@ class LogInActivity : AppCompatActivity() {
 
         btn_login.setOnClickListener {
             login()
-            val i = Intent(this@LogInActivity,MainActivity::class.java)
-            startActivity(i)
-            //finish()
         }
     }
 
@@ -45,12 +42,13 @@ class LogInActivity : AppCompatActivity() {
 
         if (email.equals("") || password.equals(""))
         {
-            Toast.makeText(this@LogInActivity,"Check empty credentials", Toast.LENGTH_LONG)
+            Toast.makeText(this@LogInActivity,"Check empty credentials", Toast.LENGTH_LONG).show()
         }
         else
         {
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener{ task ->
                 if (task.isSuccessful){
+                    Log.i("mylog", "inlogg")
                     val i = Intent(this@LogInActivity,MainActivity::class.java)
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(i)
@@ -60,7 +58,7 @@ class LogInActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@LogInActivity,
                         "Error: " + task.exception!!.message.toString(),
-                        Toast.LENGTH_LONG)
+                        Toast.LENGTH_LONG).show()
                 }
 
             }

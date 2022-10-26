@@ -91,7 +91,7 @@ class NewUserActivity : AppCompatActivity() {
                                 Toast.makeText(
                                     this@NewUserActivity,
                                     "Error: " + task2.exception!!.message.toString(),
-                                    Toast.LENGTH_LONG)
+                                    Toast.LENGTH_LONG).show()
                             }
                         }
                         Log.i("mylog","after ")
@@ -100,7 +100,7 @@ class NewUserActivity : AppCompatActivity() {
                     Toast.makeText(
                         this@NewUserActivity,
                         "Error: " + task1.exception!!.message.toString(),
-                        Toast.LENGTH_LONG)
+                        Toast.LENGTH_LONG).show()
                 }
             }
         }

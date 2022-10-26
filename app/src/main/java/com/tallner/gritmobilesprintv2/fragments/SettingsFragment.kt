@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
-import com.tallner.gritmobilesprintv2.MainActivity
 import com.tallner.gritmobilesprintv2.R
 import com.tallner.gritmobilesprintv2.StartActivity
 import kotlinx.android.synthetic.main.fragment_settings.*
