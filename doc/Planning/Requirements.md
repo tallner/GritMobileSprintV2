@@ -27,13 +27,12 @@ Kotlin is required
 
 ## Functionalities
 The user should be able to
-- [ ] create and account
+- [ ] create account
 - [ ] log in
 - [ ] chat with at least one person
-- [ ] search for chat messages
+- [ ] search userlist
 - [ ] make personal settings
 - [ ] press back button using the backstack
-- [ ] user the back tab setup in the manifest
 
 Other requirements
 - [ ] Customized app icon
@@ -47,9 +46,8 @@ Optional
 
 ## Design
 - [ ] Bottom navigation
-- [ ] Backtab defined in manifest
 - [ ] 3 activities, CreateAccount, LogIn, MainActivity
-- [ ] 4 fragments in MainActivity, ChatFragment, SearchFragment, SettingsFragment
+- [ ] 4 fragments in MainActivity, ChatFragment, FriendFragment, SettingsFragment
 
 
 
