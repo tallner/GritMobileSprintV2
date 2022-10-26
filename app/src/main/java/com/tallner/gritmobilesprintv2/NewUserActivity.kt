@@ -27,16 +27,11 @@ class NewUserActivity : AppCompatActivity() {
 
         supportActionBar!!.title = "Register new user"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
         toolbar.setNavigationOnClickListener {
             val i = Intent(this@NewUserActivity,StartActivity::class.java)
             startActivity(i)
             finish()
-        }
-
-        btn_register.setOnClickListener {
-            val i = Intent(this@NewUserActivity,StartActivity::class.java)
-            startActivity(i)
-            //      finish()
         }
 
         mAuth = FirebaseAuth.getInstance()
@@ -53,7 +48,7 @@ class NewUserActivity : AppCompatActivity() {
         val password:String = password_register.text.toString()
 
         if (username.equals("") || email.equals("") || password.equals("")){
-            Toast.makeText(this@NewUserActivity,"Check credentials",Toast.LENGTH_LONG)
+            Toast.makeText(this@NewUserActivity,"Check credentials",Toast.LENGTH_LONG).show()
         }else{
             mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener{ task1 ->

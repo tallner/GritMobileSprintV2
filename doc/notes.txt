@@ -1,1 +1,2 @@
 Hur kan man se status på users i Firebase?
+Ta bort pil i actionbar, den är bara förvirrande jämfört med pil tillbaka på telefonen
