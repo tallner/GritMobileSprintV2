@@ -20,12 +20,12 @@ class StartActivity : AppCompatActivity() {
         btn_login.setOnClickListener {
             val i = Intent(this@StartActivity,LogInActivity::class.java)
             startActivity(i)
-            finish()
+      //      finish()
         }
         btn_register.setOnClickListener {
             val i = Intent(this@StartActivity,NewUserActivity::class.java)
             startActivity(i)
-            finish()
+      //      finish()
         }
 
 
@@ -40,7 +40,7 @@ class StartActivity : AppCompatActivity() {
         if (firebaseUser != null) {
             val i = Intent(this@StartActivity,MainActivity::class.java)
             startActivity(i)
-            finish()
+           // finish()
         }
     }
 }

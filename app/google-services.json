@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "585961404455",
-    "project_id": "gritsprintv2",
-    "storage_bucket": "gritsprintv2.appspot.com"
+    "project_number": "986667111794",
+    "project_id": "test-8e78e",
+    "storage_bucket": "test-8e78e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:585961404455:android:6fe117afcdd561a79c7602",
+        "mobilesdk_app_id": "1:986667111794:android:49df3f06af8f01634cb9eb",
         "android_client_info": {
           "package_name": "com.tallner.gritmobilesprintv2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "585961404455-kv3r95ruvrg3k0p4snppsd6jt5s2i1rj.apps.googleusercontent.com",
+          "client_id": "986667111794-lp0l208e2r5qu7hjucj5mc7062ql38me.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaUZFeyqRQofNNebkUbSkNaJAahSXODQQ"
+          "current_key": "AIzaSyBDdpeePc6hxlJBsPDMtG9yBGlZIC0SvYA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "585961404455-kv3r95ruvrg3k0p4snppsd6jt5s2i1rj.apps.googleusercontent.com",
+              "client_id": "986667111794-lp0l208e2r5qu7hjucj5mc7062ql38me.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

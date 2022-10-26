@@ -59,7 +59,7 @@
                 android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
-                android:hint="Username"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textAlignment="center"
