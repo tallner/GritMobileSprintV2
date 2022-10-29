@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutFriends">
 
     <ImageView
         android:id="@+id/image_profile"
@@ -13,7 +14,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/image_online"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
 
     <TextView
         android:id="@+id/tv_username"

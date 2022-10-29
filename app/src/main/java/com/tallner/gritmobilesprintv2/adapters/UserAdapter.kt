@@ -1,59 +1,62 @@
-package com.tallner.gritmobilesprintv2
+package com.tallner.gritmobilesprintv2.adapters
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.tallner.gritmobilesprintv2.R
 import com.tallner.gritmobilesprintv2.models.User
-import kotlinx.android.synthetic.main.activity_main.*
 
 class UserAdapter(
-    mContext: Context,
-    mUserList:List<User>,
-    isChatCheck:Boolean
+    myContext: Context,
+    myUserList:List<User>,
+    isChatCheck:Boolean,
+    listener: OnItemClickListener
     ) : RecyclerView.Adapter<UserAdapter.ViewHolder?>()
 {
-    private val mContext:Context
-    private val mUserList:List<User>
+    private val myContext:Context
+    private val myUserList:List<User>
     private val isChatCheck:Boolean
+    private val listener:OnItemClickListener
+
 
     init {
-        this.mUserList = mUserList
-        this.mContext = mContext
+        this.myUserList = myUserList
+        this.myContext = myContext
         this.isChatCheck = isChatCheck
+        this.listener = listener
     }
 
     override fun onCreateViewHolder(viewgroup: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(mContext).inflate(R.layout.friend_search_layout,viewgroup,false)
-        return UserAdapter.ViewHolder(view)
+        val view: View = LayoutInflater.from(myContext).inflate(R.layout.friend_search_layout,viewgroup,false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user: User=mUserList[position]
+        val user: User=myUserList[position]
         holder.userName.text = user!!.username
         Picasso.get().load(user.profile).placeholder(R.drawable.profile).into(holder.profileImageView)
-
-        holder.userName.setOnClickListener{
-            Log.i("mylog",position.toString())
-        }
     }
 
     override fun getItemCount(): Int {
-        return mUserList.size
+        return myUserList.size
     }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnClickListener{
         var userName : TextView
         var profileImageView : ImageView
         var onlineStatus : ImageView
         var offlineStatus : ImageView
         var lastMessage : TextView
+        var layoutFriend : ConstraintLayout
 
         init {
             userName = itemView.findViewById(R.id.tv_username)
@@ -61,7 +64,20 @@ class UserAdapter(
             onlineStatus = itemView.findViewById(R.id.image_online)
             offlineStatus = itemView.findViewById(R.id.image_offline)
             lastMessage = itemView.findViewById(R.id.tv_last_message)
+            layoutFriend = itemView.findViewById(R.id.layoutFriends)
 
+            itemView.setOnClickListener(this)
         }
+
+        override fun onClick(v: View?) {
+            val position:Int = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
     }
 }

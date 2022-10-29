@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         //setup the navigation bar to be used with the navigation controller
         btmNavView.setupWithNavController(navController)
+        btmNavView.selectedItemId
 
 
         firebaseuser = FirebaseAuth.getInstance().currentUser
@@ -78,4 +80,5 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return super.onOptionsItemSelected(item)
     }
+
 }
