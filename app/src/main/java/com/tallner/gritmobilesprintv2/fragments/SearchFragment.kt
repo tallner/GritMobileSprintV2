@@ -52,7 +52,6 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
         mUsers = ArrayList()
         getAllUsers()
-    //    onItemClick()
 
 
 
@@ -74,23 +73,35 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
         return view
     }
 
-    override fun onItemClick(position: Int) {
-        Toast.makeText(activity, "item $position clicked", Toast.LENGTH_SHORT).show()
-        val btmNavView = activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        btmNavView?.selectedItemId = R.id.chatFragment
+    override fun onItemClick(position: Int, userID: String) {
 
-        val clickedItem = mUsers?.get(position)
-        Log.i("mylog",clickedItem.toString())
 
-        parentFragmentManager.beginTransaction()
+        Log.i("mylog", "Search " + userID)
+
+        // changes fragment and the bottom navigation
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.selectedItemId = R.id.chatFragment
+
+        // change fragment but not the bottom navigation
+        // this might be needed to pass parameters?
+ /*       parentFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, ChatFragment())
             .commit()
+
+*/
+        val bundle = Bundle()
+        bundle.putString("USERID", userID)
+        val fragmentChat = ChatFragment()
+        fragmentChat.arguments = bundle
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.fragmentContainer, fragmentChat)
+            commit()}
 
     }
 
     private fun getAllUsers(){
         var firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
         val refUser = FirebaseDatabase.getInstance(databaseURL).reference.child("Users")
+
         refUser.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 (mUsers as ArrayList<User>).clear()

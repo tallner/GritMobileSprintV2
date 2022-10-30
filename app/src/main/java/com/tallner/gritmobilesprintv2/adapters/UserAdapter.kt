@@ -71,13 +71,15 @@ class UserAdapter(
 
         override fun onClick(v: View?) {
             val position:Int = adapterPosition
+            val user: User=myUserList[position]
+            val userID:String = user.uid
             if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position)
+                listener.onItemClick(position,userID)
             }
         }
     }
 
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, userID:String)
     }
 }

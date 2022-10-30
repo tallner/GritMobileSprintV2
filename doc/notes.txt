@@ -1,2 +1,3 @@
 Hur kan man se status på users i Firebase?
 Ta bort pil i actionbar, den är bara förvirrande jämfört med pil tillbaka på telefonen
+Pil tillbaka från chatten till friendlist så ligger den andra användaren kvar i textfältet
