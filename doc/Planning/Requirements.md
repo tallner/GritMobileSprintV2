@@ -4,20 +4,20 @@
 
 ## Requirements
 ### Godkänd
-- [ ] Planning document 200 words
+- [x] Planning document 200 words
 - [ ] Final report with pictures and 300 words
-- [ ] At least 3 Activities/fragments
-- [ ] Use backstack 
+- [x] At least 3 Activities/fragments
+- [x] Use backstack 
 - [ ] Custom app icon
-- [ ] At least 2 Activities/Fragment/classes written in Kotlin
+- [x] At least 2 Activities/Fragment/classes written in Kotlin
 - [ ] Use the Activity Lifecycle methods and store and close services and call them when needed 
 - [ ] Store data when pausing the app
-- [ ] At least one Google Service, eg Firebase, Translator, SpeechToText etc
+- [x] At least one Google Service, eg Firebase, Translator, SpeechToText etc
   
 ### Väl Godkänt - 2 of 3 selectables
 Kotlin is required
-- [ ] At least 5 Activities/fragments
-- [ ] More than one API and database services
+- [x] At least 5 Activities/fragments
+- [x] More than one API and database services
 - [ ] The APK file should be signed with the keystore
   
   
@@ -27,10 +27,10 @@ Kotlin is required
 
 ## Functionalities
 The user should be able to
-- [ ] create account
-- [ ] log in
-- [ ] chat with at least one person
-- [ ] search userlist
+- [x] create account
+- [x] log in
+- [x] chat with at least one person
+- [x] search userlist
 - [ ] make personal settings
 - [ ] press back button using the backstack
 
@@ -45,9 +45,9 @@ Optional
 - [ ] Tests
 
 ## Design
-- [ ] Bottom navigation
-- [ ] 3 activities, CreateAccount, LogIn, MainActivity
-- [ ] 4 fragments in MainActivity, ChatFragment, FriendFragment, SettingsFragment
+- [x] Bottom navigation
+- [x] 3 activities, CreateAccount, LogIn, MainActivity
+- [x] 4 fragments in MainActivity, ChatFragment, FriendFragment, SettingsFragment
 
 
 
