@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import com.tallner.gritmobilesprintv2.R
 import com.tallner.gritmobilesprintv2.models.Chat
@@ -18,69 +20,63 @@ import com.tallner.gritmobilesprintv2.models.User
 class ChatAdapter(
     myContext: Context,
     myChatList:List<Chat>,
-    isChatCheck:Boolean,
-    listener: OnItemClickListener
+    isChatCheck:Boolean
     ) : RecyclerView.Adapter<ChatAdapter.ViewHolder?>()
 {
     private val myContext:Context
     private val myChatList:List<Chat>
     private val isChatCheck:Boolean
-    private val listener:OnItemClickListener
 
 
     init {
         this.myChatList = myChatList
         this.myContext = myContext
         this.isChatCheck = isChatCheck
-        this.listener = listener
     }
 
+    private val MESSAGE_TYPE_LEFT = 0
+    private val MESSAGE_TYPE_RIGHT = 1
+    private var firebaseUser:FirebaseUser?=null
+
     override fun onCreateViewHolder(viewgroup: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(myContext).inflate(R.layout.friend_search_layout,viewgroup,false)
-        return ViewHolder(view)
+        return ViewHolder(
+            if (viewType == MESSAGE_TYPE_LEFT) {
+                LayoutInflater.from(myContext).inflate(R.layout.chat_left_layout,viewgroup,false)
+            } else {
+                LayoutInflater.from(myContext).inflate(R.layout.chat_right_layout,viewgroup,false)
+            }
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user: User=myUserList[position]
-        holder.userName.text = user!!.username
-        Picasso.get().load(user.profile).placeholder(R.drawable.profile).into(holder.profileImageView)
+        val chat = myChatList[position]
+        holder.message.text = chat.message
+
     }
 
     override fun getItemCount(): Int {
-        return myUserList.size
+        return myChatList.size
     }
 
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), OnClickListener{
-        var userName : TextView
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var message : TextView
         var profileImageView : ImageView
-        var onlineStatus : ImageView
-        var offlineStatus : ImageView
-        var lastMessage : TextView
-        var layoutFriend : ConstraintLayout
 
         init {
-            userName = itemView.findViewById(R.id.tv_username)
+            message = itemView.findViewById(R.id.tv_chatmessage)
             profileImageView = itemView.findViewById(R.id.image_profile)
-            onlineStatus = itemView.findViewById(R.id.image_online)
-            offlineStatus = itemView.findViewById(R.id.image_offline)
-            lastMessage = itemView.findViewById(R.id.tv_last_message)
-            layoutFriend = itemView.findViewById(R.id.layoutFriends)
-
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-            val position:Int = adapterPosition
-            val user: User=myUserList[position]
-            val userID:String = user.uid
-            if (position != RecyclerView.NO_POSITION) {
-                listener.onItemClick(position,userID)
-            }
         }
     }
 
-    interface OnItemClickListener{
-        fun onItemClick(position: Int, userID:String)
+    // decides what view is showing the message, right is you and left is the other user
+    override fun getItemViewType(position: Int): Int {
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        return if (myChatList[position].senderID == firebaseUser!!.uid) {
+            MESSAGE_TYPE_RIGHT
+        } else {
+            MESSAGE_TYPE_LEFT
+        }
+
     }
 }

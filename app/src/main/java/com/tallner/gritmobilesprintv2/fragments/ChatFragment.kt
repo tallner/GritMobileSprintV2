@@ -9,21 +9,28 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 import com.squareup.picasso.Picasso
 import com.tallner.gritmobilesprintv2.R
+import com.tallner.gritmobilesprintv2.adapters.ChatAdapter
 import com.tallner.gritmobilesprintv2.adapters.UserAdapter
+import com.tallner.gritmobilesprintv2.models.Chat
 import com.tallner.gritmobilesprintv2.models.User
 import kotlinx.android.synthetic.main.fragment_chat.*
 import kotlinx.android.synthetic.main.fragment_chat.view.*
+import org.checkerframework.checker.units.qual.C
 
 class ChatFragment : Fragment() {
 
-    private var useradapter : UserAdapter?=null
+    private var chatadapter : ChatAdapter?=null
+    private var dbReference : DatabaseReference?=null
     private var mUsers:List<User>?=null
+    private var myChats:List<Chat>?=null
     private var databaseURL : String = "https://test-8e78e-default-rtdb.europe-west1.firebasedatabase.app/"
     private var recyclerview : RecyclerView?=null
     private var firebaseUser:FirebaseUser?=null
@@ -41,9 +48,16 @@ class ChatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        myChats = ArrayList()
+
         // Inflate the layout for this fragment
         val view:View = inflater.inflate(R.layout.fragment_chat, container, false)
 
+        recyclerview = view.findViewById(R.id.recycler_chat)
+        recyclerview!!.layoutManager = LinearLayoutManager(context)
+
+
+        var senderID:String = FirebaseAuth.getInstance().currentUser!!.uid
         var receiverID = requireArguments().getString("USERID").toString()
         getChatUser(receiverID)
 
@@ -52,7 +66,7 @@ class ChatFragment : Fragment() {
         btn_send.setOnClickListener{
             Log.i("mylog", receiverID.toString())
 
-            var senderID:String = FirebaseAuth.getInstance().currentUser!!.uid
+
             var message:String = edit_sendmsg.text.toString()
 
             if (message.isEmpty())
@@ -76,6 +90,8 @@ class ChatFragment : Fragment() {
                 )
             }
         }
+
+        readMessages(senderID,receiverID)
 
 
         return  view
@@ -135,6 +151,34 @@ class ChatFragment : Fragment() {
 
         refChat.push().setValue(hashMap)
 
+    }
+
+    private fun readMessages(senderID:String,receiverID:String){
+        val refChat = FirebaseDatabase.getInstance(databaseURL).getReference("Chat")
+
+        refChat.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                (myChats as ArrayList<Chat>).clear()
+
+                for (item in snapshot.children)
+                {
+                    val chat = item.getValue(Chat::class.java)
+                    if (chat!!.senderID.equals(senderID) && chat.receiverID.equals(receiverID) ||
+                        chat!!.senderID.equals(receiverID) && chat.receiverID.equals(senderID))
+                    {
+                        (myChats as ArrayList<Chat>).add(chat)
+                    }
+
+                }
+                chatadapter = ChatAdapter(context!!,myChats!!,false)
+                recyclerview!!.adapter = chatadapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
 }

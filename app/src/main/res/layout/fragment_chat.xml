@@ -36,7 +36,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rec_chat"
+        android:id="@+id/recycler_chat"
         android:layout_width="413dp"
         android:layout_height="492dp"
         android:layout_above="@+id/rel"

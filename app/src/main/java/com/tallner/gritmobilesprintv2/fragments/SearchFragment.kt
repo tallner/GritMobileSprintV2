@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
     private var useradapter : UserAdapter?=null
-    private var mUsers:List<User>?=null
+    private var myUsers:List<User>?=null
     private var databaseURL : String = "https://test-8e78e-default-rtdb.europe-west1.firebasedatabase.app/"
     private var recyclerview : RecyclerView?=null
     private var searchtext : EditText?=null
@@ -50,7 +50,7 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
         recyclerview!!.layoutManager = LinearLayoutManager(context)
         searchtext = view.findViewById(R.id.searchFriends)
 
-        mUsers = ArrayList()
+        myUsers = ArrayList()
         getAllUsers()
 
 
@@ -83,11 +83,6 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
         // change fragment but not the bottom navigation
         // this might be needed to pass parameters?
- /*       parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, ChatFragment())
-            .commit()
-
-*/
         val bundle = Bundle()
         bundle.putString("USERID", userID)
         val fragmentChat = ChatFragment()
@@ -104,17 +99,17 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
         refUser.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                (mUsers as ArrayList<User>).clear()
+                (myUsers as ArrayList<User>).clear()
 
                 if (searchtext!!.text.toString().equals(""))
                 {
                     for (item in snapshot.children){
                         val user:User?=item.getValue(User::class.java)
                         if (!(user!!.uid.equals(firebaseUserID))){
-                            (mUsers as ArrayList<User>).add(user)
+                            (myUsers as ArrayList<User>).add(user)
                         }
                     }
-                    useradapter = UserAdapter(context!!,mUsers!!,false,this@SearchFragment)
+                    useradapter = UserAdapter(context!!,myUsers!!,false,this@SearchFragment)
                     recyclerview!!.adapter = useradapter
                 }
             }
@@ -138,14 +133,14 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
         queryUsers.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                (mUsers as ArrayList<User>).clear()
+                (myUsers as ArrayList<User>).clear()
                 for (item in snapshot.children){
                     val user:User?=item.getValue(User::class.java)
                     if (!(user!!.uid.equals(firebaseUserID))){
-                        (mUsers as ArrayList<User>).add(user)
+                        (myUsers as ArrayList<User>).add(user)
                     }
                 }
-                useradapter = UserAdapter(context!!,mUsers!!,false,this@SearchFragment)
+                useradapter = UserAdapter(context!!,myUsers!!,false,this@SearchFragment)
                 recyclerview!!.adapter = useradapter
             }
 
@@ -157,22 +152,4 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
         )
 
     }
-
- /*   override fun onItemClick() {
-        super.onItemClick()
-
-        Log.i("mylog", "fragments changed")
-/*
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer,ChatFragment())
-        transaction.commit()
-
-        requireActivity().supportFragmentManager.commit {
-            replace<ChatFragment>(R.id.fragmentContainer)
-            setReorderingAllowed(true)
-            addToBackStack(null) // name can be null
-        }
-*/
-    }
-*/
 }
