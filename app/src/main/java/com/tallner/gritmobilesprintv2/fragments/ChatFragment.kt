@@ -28,12 +28,9 @@ import org.checkerframework.checker.units.qual.C
 class ChatFragment : Fragment() {
 
     private var chatadapter : ChatAdapter?=null
-    private var dbReference : DatabaseReference?=null
-    private var mUsers:List<User>?=null
-    private var myChats:List<Chat>?=null
+    private lateinit var myChats:List<Chat>
     private var databaseURL : String = "https://test-8e78e-default-rtdb.europe-west1.firebasedatabase.app/"
     private var recyclerview : RecyclerView?=null
-    private var firebaseUser:FirebaseUser?=null
     private lateinit var btn_send:ImageButton
 
 
@@ -59,7 +56,7 @@ class ChatFragment : Fragment() {
 
         var senderID:String = FirebaseAuth.getInstance().currentUser!!.uid
         var receiverID = requireArguments().getString("USERID").toString()
-        getChatUser(receiverID)
+       // getChatUser(receiverID)
 
 
         btn_send = view.findViewById(R.id.btn_sendmessage)
@@ -93,6 +90,8 @@ class ChatFragment : Fragment() {
 
         readMessages(senderID,receiverID)
 
+      //  Log.i("mytag", "nr chats " + (myChats.size-1).toString())
+
 
         return  view
     }
@@ -102,7 +101,7 @@ class ChatFragment : Fragment() {
 
 
     }
-
+/*
     private fun getChatUser(userID:String){
         if (userID.equals(null)) return
 
@@ -139,7 +138,7 @@ class ChatFragment : Fragment() {
         })
 
     }
-
+*/
     private fun sendMessage(senderID:String,receiverID:String,message:String){
         val refChat = FirebaseDatabase.getInstance(databaseURL).reference.child("Chat")
 
@@ -151,6 +150,25 @@ class ChatFragment : Fragment() {
 
         refChat.push().setValue(hashMap)
 
+    }
+
+    private fun scrollToBottom(){
+        //val refChat = FirebaseDatabase.getInstance(databaseURL).getReference("Chat")
+        recyclerview?.scrollToPosition(myChats.size-1)
+        Log.i("mytag", "nr chats " + (myChats.size-1).toString())
+/*
+        refChat.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+ */
     }
 
     private fun readMessages(senderID:String,receiverID:String){
@@ -170,8 +188,10 @@ class ChatFragment : Fragment() {
                     }
 
                 }
-                chatadapter = ChatAdapter(context!!,myChats!!,false)
+                chatadapter = context?.let { ChatAdapter(it, myChats as ArrayList<Chat>,false) }
+
                 recyclerview!!.adapter = chatadapter
+                scrollToBottom()
             }
 
             override fun onCancelled(error: DatabaseError) {
