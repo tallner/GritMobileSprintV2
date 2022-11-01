@@ -5,7 +5,7 @@
 ## Requirements
 ### Godkänd
 - [x] Planning document 200 words
-- [ ] Final report with pictures and 300 words
+- [ ] Final report with pictures and 250 words
 - [x] At least 3 Activities/fragments
 - [x] Use backstack 
 - [ ] Custom app icon
