@@ -5,7 +5,7 @@
 ## Requirements
 ### Godkänd
 - [x] Planning document 200 words
-- [ ] Final report with pictures and 300 words
+- [ ] Final report with pictures and 250 words
 - [x] At least 3 Activities/fragments
 - [x] Use backstack 
 - [ ] Custom app icon
@@ -14,11 +14,12 @@
 - [ ] Store data when pausing the app
 - [x] At least one Google Service, eg Firebase, Translator, SpeechToText etc
   
-### Väl Godkänt - 2 of 3 selectables
+### Väl Godkänt - 2 of 4 selectables
 Kotlin is required
 - [x] At least 5 Activities/fragments
 - [x] More than one API and database services
 - [ ] The APK file should be signed with the keystore
+- [ ] Additional relevant features relevant for the concept (voice audio,position, GPS, sensorer reading, notification)
   
   
 ## Presentation
