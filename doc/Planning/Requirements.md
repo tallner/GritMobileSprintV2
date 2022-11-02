@@ -8,7 +8,7 @@
 - [ ] Final report with pictures and 250 words
 - [x] At least 3 Activities/fragments
 - [x] Use backstack 
-- [ ] Custom app icon
+- [x] Custom app icon
 - [x] At least 2 Activities/Fragment/classes written in Kotlin
 - [ ] Use the Activity Lifecycle methods and store and close services and call them when needed 
 - [ ] Store data when pausing the app
