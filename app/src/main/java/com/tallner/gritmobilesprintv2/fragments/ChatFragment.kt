@@ -1,5 +1,7 @@
 package com.tallner.gritmobilesprintv2.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -32,6 +34,9 @@ class ChatFragment : Fragment() {
     private var databaseURL : String = "https://test-8e78e-default-rtdb.europe-west1.firebasedatabase.app/"
     private var recyclerview : RecyclerView?=null
     private lateinit var btn_send:ImageButton
+    private lateinit var sharedPreferences: SharedPreferences
+    private var USERID_KEY = "username"
+    private var PREFS_KEY = "prefs"
 
 
 
@@ -52,17 +57,19 @@ class ChatFragment : Fragment() {
 
         recyclerview = view.findViewById(R.id.recycler_chat)
         recyclerview!!.layoutManager = LinearLayoutManager(context)
+        sharedPreferences = context?.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)!!
 
 
         var senderID:String = FirebaseAuth.getInstance().currentUser!!.uid
         var receiverID = requireArguments().getString("USERID").toString()
-       // getChatUser(receiverID)
+        if (receiverID=="null") {
+            receiverID = sharedPreferences.getString(USERID_KEY, null)!!
+        }
+        Log.i("mytag", receiverID.toString())
 
 
         btn_send = view.findViewById(R.id.btn_sendmessage)
         btn_send.setOnClickListener{
-            Log.i("mylog", receiverID.toString())
-
 
             var message:String = edit_sendmsg.text.toString()
 

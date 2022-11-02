@@ -1,5 +1,7 @@
 package com.tallner.gritmobilesprintv2.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,6 +32,9 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
     private var databaseURL : String = "https://test-8e78e-default-rtdb.europe-west1.firebasedatabase.app/"
     private var recyclerview : RecyclerView?=null
     private var searchtext : EditText?=null
+    private lateinit var sharedPreferences: SharedPreferences
+    private var USERID_KEY = "username"
+    private var PREFS_KEY = "prefs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,11 +80,10 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int, userID: String) {
 
-
-        Log.i("mylog", "Search " + userID)
-
         // changes fragment and the bottom navigation
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.selectedItemId = R.id.chatFragment
+        sharedPreferences = context?.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)!!
+
 
         // change fragment but not the bottom navigation
         // this might be needed to pass parameters?
@@ -90,6 +94,15 @@ class SearchFragment : Fragment(), UserAdapter.OnItemClickListener {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainer, fragmentChat)
             commit()}
+
+        // create variable for editor of shared prefs
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+
+        // adding our username and pwd to shared prefs
+        editor.putString(USERID_KEY, userID)
+
+        // apply changes to our shared prefs.
+        editor.apply()
 
     }
 
