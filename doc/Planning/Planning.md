@@ -8,8 +8,8 @@ The github tools are used for the planning:
 - All requirements are defined in the [Requirement](https://github.com/tallner/GritMobileSprintV2/blob/f0d4d3238102a311249d8b93f3a355aa2e3ddfc6/doc/Planning/Requirements.md) document. However, they are no sorted into issues and have to be ticked of when implemented.
   
 ## [Milestones](https://github.com/tallner/GritMobileSprintV2/milestones)
-- [ ] MS1. [Planning](https://github.com/tallner/GritMobileSprintV2/milestone/1) - 22/10
-- [ ] MS2. [GUI Design](https://github.com/tallner/GritMobileSprintV2/milestone/2) - 24/10
-- [ ] MS3. [Implementation - Activities](https://github.com/tallner/GritMobileSprintV2/milestone/3) - 28/10
-- [ ] MS4. [Implementation - Fragments](https://github.com/tallner/GritMobileSprintV2/milestone/4) - 01/11
+- [x] MS1. [Planning](https://github.com/tallner/GritMobileSprintV2/milestone/1) - 22/10
+- [x] MS2. [GUI Design](https://github.com/tallner/GritMobileSprintV2/milestone/2) - 24/10
+- [x] MS3. [Implementation - Activities](https://github.com/tallner/GritMobileSprintV2/milestone/3) - 28/10
+- [x] MS4. [Implementation - Fragments](https://github.com/tallner/GritMobileSprintV2/milestone/4) - 01/11
 - [ ] MS5. [Report and deployment](https://github.com/tallner/GritMobileSprintV2/milestone/5) - 03/11
