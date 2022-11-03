@@ -5,7 +5,7 @@
 ## Requirements
 ### Godkänd
 - [x] Planning document 200 words
-- [ ] Final report with pictures and 250 words
+- [x] Final report with pictures and 250 words
 - [x] At least 3 Activities/fragments
 - [x] Use backstack 
 - [x] Custom app icon
@@ -32,10 +32,10 @@ The user should be able to
 - [x] chat with at least one person
 - [x] search userlist
 - [ ] make personal settings
-- [ ] press back button using the backstack
+- [x] press back button using the backstack
 
 Other requirements
-- [ ] Customized app icon
+- [x] Customized app icon
 
 Optional
 - [ ] Immediate translation
