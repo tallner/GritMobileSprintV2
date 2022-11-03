@@ -10,8 +10,7 @@
 - [x] Use backstack 
 - [x] Custom app icon
 - [x] At least 2 Activities/Fragment/classes written in Kotlin
-- [ ] Use the Activity Lifecycle methods and store and close services and call them when needed 
-- [ ] Store data when pausing the app
+- [x] Store data when pausing the app or changing fragment/activity
 - [x] At least one Google Service, eg Firebase, Translator, SpeechToText etc
   
 ### Väl Godkänt - 2 of 4 selectables
