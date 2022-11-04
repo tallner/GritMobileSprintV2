@@ -54,13 +54,20 @@ class ChatFragment : Fragment() {
 
         var senderID:String = FirebaseAuth.getInstance().currentUser!!.uid
         var receiverID = requireArguments().getString("USERID").toString()
-        if (receiverID=="null") {
-            receiverID = sharedPreferences.getString(USERID_KEY, null)!!
-        }
 
+
+        if (receiverID=="null") {
+
+            receiverID = if (sharedPreferences.getString(USERID_KEY, null).toString()=="null") {
+                ""
+            } else{
+                sharedPreferences.getString(USERID_KEY, null).toString()
+            }
+        }
 
         btn_send = view.findViewById(R.id.btn_sendmessage)
         btn_send.setOnClickListener{
+
 
             var message:String = edit_sendmsg.text.toString()
 
@@ -86,7 +93,10 @@ class ChatFragment : Fragment() {
             }
         }
 
-        readMessages(senderID,receiverID)
+        if (receiverID!=""){
+            readMessages(senderID,receiverID)
+        }
+
 
         return  view
     }
@@ -102,10 +112,6 @@ class ChatFragment : Fragment() {
 
         refChat.push().setValue(hashMap)
 
-    }
-
-    private fun scrollToBottom(){
-        recyclerview?.scrollToPosition(myChats.size-1)
     }
 
     private fun readMessages(senderID:String,receiverID:String){
@@ -125,10 +131,12 @@ class ChatFragment : Fragment() {
                     }
 
                 }
-                chatadapter = context?.let { ChatAdapter(it, myChats as ArrayList<Chat>,false) }
+                chatadapter = context?.let{
+                    ChatAdapter(it, myChats as ArrayList<Chat>,false)
+                }
 
                 recyclerview!!.adapter = chatadapter
-                scrollToBottom()
+                recyclerview!!.scrollToPosition(myChats.size-1)
             }
 
             override fun onCancelled(error: DatabaseError) {
