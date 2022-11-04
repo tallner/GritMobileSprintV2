@@ -22,7 +22,7 @@ Kotlin is required
   
   
 ## Presentation
-- [ ] In class 10 min + 5 min questions
+- [x] In class 10 min + 5 min questions
 
 
 ## Functionalities
@@ -31,7 +31,7 @@ The user should be able to
 - [x] log in
 - [x] chat with at least one person
 - [x] search userlist
-- [ ] make personal settings
+- [/] make personal settings
 - [x] press back button using the backstack
 
 Other requirements
